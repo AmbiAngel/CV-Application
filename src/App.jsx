@@ -6,6 +6,8 @@ import './App.css'
 import Input from './components/customInput'
 import InputHalf from './components/input_half.jsx'
 import PreviewHalf from './components/preview_half.jsx'
+// import inputsContainer from './components/inputsContainer'
+import InputsContainer from './components/inputsContainer'
 
 
 
@@ -31,56 +33,139 @@ function App() {
         startDate:'123',
         endDate:'421',
         location:'asdf'
-      }
+      },
+      {
+        school:'2',
+        field:'civil law2',
+        startDate:'1223',
+        endDate:'4221',
+        location:'a2sdf'
+      },
     ],
     experience:[
       {
         jobTitle:'1',
-        company:'civil law',
+        company:'securitah',
         startDate:'123',
         endDate:'421',
         location:'asdf'
       }
     ]
   }
+
+  const personalInfoInputs = [
+    {
+      id:'firstName',
+      label:'First Name',
+      inputType:'text'
+    },
+    {
+      id:'lastName',
+      label:'Last Name',
+      inputType:'text'
+    },
+    {
+      id:'email',
+      label:'Email',
+      inputType:'text'
+    },
+    {
+      id:'phone',
+      label:'Phone',
+      inputType:'number'
+    },
+  ]
+
+  const educationInputs = [
+    {
+      id:'school',
+      label:'School',
+      inputType:'text'
+    },
+    {
+      id:'field',
+      label:'Field of Study',
+      inputType:'text'
+    },
+    {
+      id:'startDate',
+      label:'Start Date',
+      inputType:'text'
+    },
+    {
+      id:'endDate',
+      label:'End Date',
+      inputType:'number'
+    },
+  ]
+
+  const experienceInputs = [
+    {
+      id:'jobTitle',
+      label:'Job Title',
+      inputType:'text'
+    },
+    {
+      id:'company',
+      label:'Company',
+      inputType:'text'
+    },
+    {
+      id:'startDate',
+      label:'Start Date',
+      inputType:'text'
+    },
+    {
+      id:'endDate',
+      label:'End Date',
+      inputType:'number'
+    },
+  ]
   // const [count, setCount] = useState(0)
   const [value, setValue] = useState('')
-  console.log('test');
   const[personalInfo, setPersonalInfo] = useState({...mockData2.personalInfo})
+
   const[education, setEducation] = useState([...mockData2.education])
+  const[selectedEducationId, setSelectedEducationId] = useState(0)
+
   const[experience, setExperience] = useState([...mockData2.experience])
+  const[selectedExperienceId, setSelectedExperienceId] = useState(0)
+
+  console.log(education);
   // Have a state Obj that updates appropriate prop on input change and renders on Resume
   return (
     <div className="app">
       <div className="inputHalf">
         <h1>input</h1>
         <form action="">
+            <InputsContainer 
+              categorySetter={setPersonalInfo} 
+              categoryObj={{...personalInfo}} 
+              categoryTitle='Personal info'
+              containerClass='personal-info-input-container'
+              inputsArray={personalInfoInputs}
+              >
+            </InputsContainer>
 
-            <fieldset className="personal-info-container">
-                <legend>Personal info</legend>
-                <Input id='first-name' label='First Name' inputType='text' isRequired={true} value={personalInfo.firstName} onChange={(e)=> setPersonalInfo({...personalInfo, firstName: e.target.value})}></Input>
-                <Input id='last-name' label='Last Name' inputType='text' isRequired={true}  value={personalInfo.lastName} onChange={(e)=> setPersonalInfo({...personalInfo, lastName: e.target.value})}></Input>
-                <Input id='email' label='Email' inputType='text'  value={personalInfo.email} onChange={(e)=> setPersonalInfo({...personalInfo, email: e.target.value})}></Input>
-                <Input id='phone' label='Phone' inputType='number'  value={personalInfo.phone} onChange={(e)=> setPersonalInfo({...personalInfo, phone: e.target.value})}></Input>
-            </fieldset>
+            <InputsContainer 
+              categorySetter={setEducation} 
+              categoryObj={[...education]}
+              categorySelectedId={selectedEducationId} 
+              categoryTitle='Education'
+              containerClass='education-input-container'
+              inputsArray={educationInputs}
+              >
+            </InputsContainer>
 
-            <fieldset className="education-info-container">
-                <legend>Education</legend>
-                <Input id='school' label='School' inputType='text'></Input>
-                <Input id='field' label='Field' inputType='text'></Input>
-                <Input id='education-start-date' label='Start Date' inputType='text'></Input>
-                <Input id='education-end-date' label='End Date' inputType='text'></Input>
-                <Input id='education-location' label='Location' inputType='text'></Input>
-            </fieldset>
-
-            <fieldset className="experience-info-container">
-                <legend>Experience</legend>
-                <Input id='job-title' label='Job Title' inputType='text'></Input>
-                <Input id='company' label='Company' inputType='text'></Input>
-                <Input id='experience-start-date' label='Start Date' inputType='text'></Input>
-                <Input id='experience-end-date' label='End Date' inputType='text'></Input>
-                <Input id='experience-location' label='Location' inputType='text'></Input>
-            </fieldset>
+            <InputsContainer 
+              categorySetter={setExperience} 
+              categoryObj={[...experience]}
+              categorySelectedId={selectedExperienceId} 
+              categoryTitle='Experience'
+              containerClass='experience-input-container'
+              inputsArray={experienceInputs}
+              >
+            </InputsContainer>
         </form>
     </div>
       <div className="previewHalf">
@@ -92,7 +177,14 @@ function App() {
           <p>{personalInfo.phone}</p>
         </div>
         <div className="resume-education-info">
-          {education.map((item) => null)}
+          {education.map((item, index) => 
+          <div className="education-item" key={index}>
+            <p>{item.school}</p>
+            <p>{item.field}</p>
+            <p>{item.startDate}</p>
+            <p>{item.endDate}</p>
+          </div>
+          )}
         </div>
       </div>
     </div>
