@@ -67,7 +67,7 @@ function App() {
     {
       id:'email',
       label:'Email',
-      inputType:'text'
+      inputType:'email'
     },
     {
       id:'phone',
@@ -90,13 +90,18 @@ function App() {
     {
       id:'startDate',
       label:'Start Date',
-      inputType:'text'
+      inputType:'date'
     },
     {
       id:'endDate',
       label:'End Date',
-      inputType:'number'
+      inputType:'date'
     },
+    {
+      id:'location',
+      label:'Location',
+      inputType:'text'
+    }
   ]
 
   const experienceInputs = [
@@ -118,7 +123,7 @@ function App() {
     {
       id:'endDate',
       label:'End Date',
-      inputType:'number'
+      inputType:'tel'
     },
   ]
   // const [count, setCount] = useState(0)
@@ -142,7 +147,7 @@ function App() {
               categorySetter={setPersonalInfo} 
               categoryObj={{...personalInfo}} 
               categoryTitle='Personal info'
-              containerClass='personal-info-input-container'
+              containerClass='personalInfo'
               inputsArray={personalInfoInputs}
               >
             </InputsContainer>
@@ -152,8 +157,9 @@ function App() {
               categoryObj={[...education]}
               categorySelectedId={selectedEducationId} 
               categoryTitle='Education'
-              containerClass='education-input-container'
+              containerClass='educationInfo'
               inputsArray={educationInputs}
+              setSelectedId={setSelectedEducationId}
               >
             </InputsContainer>
 
@@ -164,6 +170,8 @@ function App() {
               categoryTitle='Experience'
               containerClass='experience-input-container'
               inputsArray={experienceInputs}
+              setSelectedId={setSelectedExperienceId}
+
               >
             </InputsContainer>
         </form>
@@ -183,6 +191,18 @@ function App() {
             <p>{item.field}</p>
             <p>{item.startDate}</p>
             <p>{item.endDate}</p>
+            <p>{item.location}</p>
+          </div>
+          )}
+        </div>
+        <div className="resume-experience-info">
+          {experience.map((item, index) => 
+          <div className="experience-item" key={index}>
+            <p>{item.jobTitle}</p>
+            <p>{item.company}</p>
+            <p>{item.startDate}</p>
+            <p>{item.endDate}</p>
+            <p>{item.location}</p>
           </div>
           )}
         </div>
