@@ -9,7 +9,7 @@ export default function InputsContainer({containerClass, categorySetter, categor
             <legend>{categoryTitle}</legend>
             <select onChange={(e)=>setSelectedId(e.target.value)}>
                 {categoryObj.map((obj,index)=>{
-                    return <option key={index} value={index}>{`${index+1}`}</option>
+                    return <option key={index} value={index}>{`${obj.school || obj.jobTitle} - ${obj.field || obj.company}`}</option>
                 })}
             </select>
             {inputsArray.map((item)=>
@@ -26,8 +26,9 @@ export default function InputsContainer({containerClass, categorySetter, categor
                 }}>
 
             </Input>
-            
             )}
+
+            
         </fieldset>
         )
     }
