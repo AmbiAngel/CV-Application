@@ -118,12 +118,12 @@ function App() {
     {
       id:'startDate',
       label:'Start Date',
-      inputType:'text'
+      inputType:'date'
     },
     {
       id:'endDate',
       label:'End Date',
-      inputType:'tel'
+      inputType:'date'
     },
   ]
   // const [count, setCount] = useState(0)

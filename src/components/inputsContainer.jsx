@@ -1,5 +1,12 @@
 import Input from './customInput'
 
+const defaultObj = {
+    school: 'Enter school',
+    field: 'Enter Field',
+    startDate: 'Enter Start Date',
+    endDate: 'Enter End Date',
+    location: 'Enter Location'
+}
 
 export default function InputsContainer({containerClass, categorySetter, categoryObj, categoryTitle, inputsArray, categorySelectedId, setSelectedId}){
     if (Array.isArray(categoryObj)){
@@ -9,7 +16,15 @@ export default function InputsContainer({containerClass, categorySetter, categor
             <legend>{categoryTitle}</legend>
             <select onChange={(e)=>setSelectedId(e.target.value)}>
                 {categoryObj.map((obj,index)=>{
-                    return <option key={index} value={index}>{`${obj.school || obj.jobTitle} - ${obj.field || obj.company}`}</option>
+                    let selectedOption = false;
+                    if(categorySelectedId === index){selectedOption = true}
+                    return(
+                        <option 
+                        key={index} 
+                        value={index}
+                        selected={selectedOption}
+                        >{`${obj.school || obj.jobTitle} - ${obj.field || obj.company}`}
+                        </option>)
                 })}
             </select>
             {inputsArray.map((item)=>
@@ -28,7 +43,18 @@ export default function InputsContainer({containerClass, categorySetter, categor
             </Input>
             )}
 
+            <button type='button' className="add-item" 
+            onClick={()=>{
+                console.log(isolatedObj);
+                const emptyObj = {}
+                for(let key in isolatedObj){
+                    emptyObj[key]=''
+                }
+                categorySetter([...categoryObj, emptyObj] )
+                setSelectedId(categoryObj.length)
             
+            }}
+            >Add</button>
         </fieldset>
         )
     }
