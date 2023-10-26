@@ -130,13 +130,16 @@ function App() {
   const [value, setValue] = useState('')
   const[personalInfo, setPersonalInfo] = useState({...mockData2.personalInfo})
 
-  const[education, setEducation] = useState([...mockData2.education])
+  const[education, setEducation] = useState([])
   const[selectedEducationId, setSelectedEducationId] = useState(0)
 
-  const[experience, setExperience] = useState([...mockData2.experience])
+  const[experience, setExperience] = useState([])
   const[selectedExperienceId, setSelectedExperienceId] = useState(0)
 
   console.log(education);
+  console.log(selectedEducationId);
+
+  const fullName = `${personalInfo.firstName} ${personalInfo.lastName}`
   // Have a state Obj that updates appropriate prop on input change and renders on Resume
   return (
     <div className="app">
@@ -177,16 +180,17 @@ function App() {
         </form>
     </div>
       <div className="previewHalf">
-        <h1>preview</h1>
         <div className="resume-personal-info">
-          <p>{personalInfo.firstName}</p>
-          <p>{personalInfo.lastName}</p>
-          <p>{personalInfo.email}</p>
-          <p>{personalInfo.phone}</p>
+          <p className='full-name'>{fullName}</p>
+          <p className='email'>{personalInfo.email}</p>
+          <p className='phone'>{personalInfo.phone}</p>
         </div>
         <div className="resume-education-info">
+          {education.length > 0 && 
+          <h2>Education</h2>
+          }
           {education.map((item, index) => 
-          <div className="education-item" key={index}>
+          <div className="education-item dynamic-container" key={index}>
             <p>{item.school}</p>
             <p>{item.field}</p>
             <p>{item.startDate}</p>
@@ -196,8 +200,11 @@ function App() {
           )}
         </div>
         <div className="resume-experience-info">
+        {experience.length > 0 && 
+          <h2>Experience</h2>
+          }
           {experience.map((item, index) => 
-          <div className="experience-item" key={index}>
+          <div className="experience-item dynamic-container" key={index}>
             <p>{item.jobTitle}</p>
             <p>{item.company}</p>
             <p>{item.startDate}</p>

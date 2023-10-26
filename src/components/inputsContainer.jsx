@@ -11,7 +11,7 @@ const defaultObj = {
 export default function InputsContainer({containerClass, categorySetter, categoryObj, categoryTitle, inputsArray, categorySelectedId, setSelectedId}){
     // Code for rendering the Education and Experience sections' inputs
     if (Array.isArray(categoryObj)){
-        const isolatedObj = categoryObj[categorySelectedId]
+        const isolatedObj = categoryObj[categorySelectedId] || {}
         return(
         <fieldset className={containerClass}>
             <legend>{categoryTitle}</legend>
@@ -45,12 +45,14 @@ export default function InputsContainer({containerClass, categorySetter, categor
 
             <button type='button' className="add-item" 
             onClick={()=>{
-                console.log(isolatedObj);
+                
                 const emptyObj = {}
                 for(let key in isolatedObj){
                     emptyObj[key]=''
                 }
+                console.log(categoryObj);
                 categorySetter([...categoryObj, emptyObj] )
+                console.log(categoryObj);
                 setSelectedId(categoryObj.length)
             }}
             >Add</button>
