@@ -9,6 +9,7 @@ const defaultObj = {
 }
 
 export default function InputsContainer({containerClass, categorySetter, categoryObj, categoryTitle, inputsArray, categorySelectedId, setSelectedId}){
+    // Code for rendering the Education and Experience sections' inputs
     if (Array.isArray(categoryObj)){
         const isolatedObj = categoryObj[categorySelectedId]
         return(
@@ -28,19 +29,18 @@ export default function InputsContainer({containerClass, categorySetter, categor
                 })}
             </select>
             {inputsArray.map((item)=>
-            <Input 
-            key={item.id} 
-            id={`${containerClass}-${item.id}`} 
-            label={item.label} 
-            inputType={item.inputType} 
-            isRequired={true} 
-            value={isolatedObj[item.id]} 
-            onChange={(e)=>{
-                categoryObj[categorySelectedId][item.id] = e.target.value
-                categorySetter([...categoryObj])
-                }}>
-
-            </Input>
+                <Input 
+                key={item.id} 
+                id={`${containerClass}-${item.id}`} 
+                label={item.label} 
+                inputType={item.inputType} 
+                isRequired={true} 
+                value={isolatedObj[item.id]} 
+                onChange={(e)=>{
+                    categoryObj[categorySelectedId][item.id] = e.target.value
+                    categorySetter([...categoryObj])
+                    }}>
+                </Input>
             )}
 
             <button type='button' className="add-item" 
@@ -52,13 +52,13 @@ export default function InputsContainer({containerClass, categorySetter, categor
                 }
                 categorySetter([...categoryObj, emptyObj] )
                 setSelectedId(categoryObj.length)
-            
             }}
             >Add</button>
         </fieldset>
         )
     }
     
+    // Code for Rendering the Personal Info section's Inputs
     return(
         <fieldset className={containerClass}>
             <legend>{categoryTitle}</legend>
