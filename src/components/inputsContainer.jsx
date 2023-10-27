@@ -45,17 +45,15 @@ export default function InputsContainer({containerClass, categorySetter, categor
 
             <button type='button' className="add-item" 
             onClick={()=>{
-                
                 const emptyObj = {}
                 for(let key in isolatedObj){
                     emptyObj[key]=''
                 }
-                console.log(categoryObj);
                 categorySetter([...categoryObj, emptyObj] )
-                console.log(categoryObj);
                 setSelectedId(categoryObj.length)
             }}
-            >Add</button>
+            >Add
+            </button>
 
             <button 
             type='button' 
@@ -63,12 +61,10 @@ export default function InputsContainer({containerClass, categorySetter, categor
             onClick={()=>{
                 const newObj = [...categoryObj]
                 newObj.length > 0 && newObj.splice(categorySelectedId, 1)
-                console.log(newObj);
                 categorySetter(newObj)
-                setSelectedId(0)
-
-            }}>
-                Delete
+                categorySelectedId > 0 ? setSelectedId(categorySelectedId-1) : setSelectedId(0)
+            }}
+            >Delete
             </button>
         </fieldset>
         )
