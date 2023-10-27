@@ -130,10 +130,10 @@ function App() {
   const [value, setValue] = useState('')
   const[personalInfo, setPersonalInfo] = useState({...mockData2.personalInfo})
 
-  const[education, setEducation] = useState([])
+  const[education, setEducation] = useState([...mockData2.education])
   const[selectedEducationId, setSelectedEducationId] = useState(0)
 
-  const[experience, setExperience] = useState([])
+  const[experience, setExperience] = useState([...mockData2.experience])
   const[selectedExperienceId, setSelectedExperienceId] = useState(0)
 
   console.log(education);

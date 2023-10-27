@@ -56,6 +56,20 @@ export default function InputsContainer({containerClass, categorySetter, categor
                 setSelectedId(categoryObj.length)
             }}
             >Add</button>
+
+            <button 
+            type='button' 
+            className="remove-item"
+            onClick={()=>{
+                const newObj = [...categoryObj]
+                newObj.length > 0 && newObj.splice(categorySelectedId, 1)
+                console.log(newObj);
+                categorySetter(newObj)
+                setSelectedId(0)
+
+            }}>
+                Delete
+            </button>
         </fieldset>
         )
     }
