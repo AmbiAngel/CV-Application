@@ -90,12 +90,12 @@ function App() {
     {
       id:'startDate',
       label:'Start Date',
-      inputType:'date'
+      inputType:'text'
     },
     {
       id:'endDate',
       label:'End Date',
-      inputType:'date'
+      inputType:'text'
     },
     {
       id:'location',
@@ -118,12 +118,12 @@ function App() {
     {
       id:'startDate',
       label:'Start Date',
-      inputType:'date'
+      inputType:'text'
     },
     {
       id:'endDate',
       label:'End Date',
-      inputType:'date'
+      inputType:'text'
     },
   ]
   // const [count, setCount] = useState(0)
