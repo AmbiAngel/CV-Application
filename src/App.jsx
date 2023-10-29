@@ -24,31 +24,24 @@ function App() {
       firstName:'John',
       lastName:'Doe',
       email:'johndoe92@gmail.com',
-      phone:'4446668888'
+      phone:'444-666-8888'
     },
     education:[
       {
-        school:'1',
-        field:'civil law',
-        startDate:'123',
-        endDate:'421',
-        location:'asdf'
-      },
-      {
-        school:'2',
-        field:'civil law2',
-        startDate:'1223',
-        endDate:'4221',
-        location:'a2sdf'
-      },
+        school:'Middlesex County College',
+        field:'General Biology',
+        startDate:'Aug 21 2020',
+        endDate:'Jul 21 2022',
+        location:'Middlesex County'
+      }
     ],
     experience:[
       {
-        jobTitle:'1',
-        company:'securitah',
-        startDate:'123',
-        endDate:'421',
-        location:'asdf'
+        jobTitle:'Waiter',
+        company:'Buffalo Wild WIngs',
+        startDate:'Jul 14 2017',
+        endDate:'Mar 02 2018',
+        location:''
       }
     ]
   }
@@ -72,7 +65,7 @@ function App() {
     {
       id:'phone',
       label:'Phone',
-      inputType:'number'
+      inputType:'text'
     },
   ]
 
