@@ -73,3 +73,17 @@
   grid-template-columns: 1fr 1fr;
   margin: 5px;
 }
+
+fieldset legend {
+    text-align: center;
+}
+
+fieldset {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 5px;
+}
+
+select {
+  grid-column: span 2;
+}
